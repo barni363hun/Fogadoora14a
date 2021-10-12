@@ -1,4 +1,3 @@
-const fs = require("fs");
 import { readFileSync } from "fs";
 import Foglalas from "./foglalas";
 
