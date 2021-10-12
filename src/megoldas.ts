@@ -1,3 +1,1 @@
-export default class Megoldás{
-    
-}
+export default class Megoldas {}
