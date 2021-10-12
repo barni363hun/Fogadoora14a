@@ -1,1 +1,10 @@
-export default class Megoldas {}
+import Foglalas from "./foglalas";
+
+export default class Megoldas {
+
+
+    constructor(fajlNev: string) {
+
+
+    }
+}
