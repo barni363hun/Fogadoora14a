@@ -1,3 +1,3 @@
-export default class Foglalás{
+export default class Fogalalas{
     
 }
