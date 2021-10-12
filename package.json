@@ -1,7 +1,7 @@
 {
-    "name": "jedlik-typescript-vscode-template",
+    "name": "fogadoora",
     "version": "1.0.0",
-    "description": "Jedlik project template for using TypeScript, Jest and Node.js in VS Code.",
+    "description": "2018.05.14 érettségi feladat megoldása typescript nyelven",
     "engines": {
         "node": "14.x"
     },
@@ -9,7 +9,7 @@
     "repository": {
         "private": false,
         "type": "git",
-        "url": "https://github.com/nitslaszlo/JedlikTsTemplate"
+        "url": "https://github.com/barni363hun/Fogadoora14a"
     },
     "scripts": {
         "start": "node ./dist/App.js",
@@ -21,7 +21,7 @@
         "dev": "ts-node-dev --respawn --transpile-only src/App.ts",
         "dev-nm": "nodemon"
     },
-    "author": "Nits László",
+    "author": "Princzes Barnabás, Cserpák Róbert, Szebik Levente",
     "license": "MIT",
     "dependencies": {
         "tslib": "^2.3.1"
