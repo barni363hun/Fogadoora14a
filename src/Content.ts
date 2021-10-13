@@ -1,6 +1,7 @@
 ﻿import fs from "fs"; //  https://nodejs.org/docs/latest-v14.x/api/fs.html
 import http from "http"; //  https://nodejs.org/docs/latest-v14.x/api/http.html
 import url from "url"; //  https://nodejs.org/docs/latest-v14.x/api/url.html
+import Megoldas from "./megoldas";
 
 export default class Content {
     public static content(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -11,6 +12,7 @@ export default class Content {
             return;
         }
         // Weboldal inicializálása + head rész:
+        const megoldas:Megoldas = new Megoldas("src/fogado.txt")
 
         // <---- Fejezd be a kódolást
 
