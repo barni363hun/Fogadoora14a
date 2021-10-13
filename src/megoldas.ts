@@ -6,7 +6,7 @@ export default class Megoldas {
     constructor(fajlNev: string) {
         readFileSync(fajlNev)
             .toString()
-            .split("\n\r")
+            .split("\r\n")
             .forEach(f => this.foglalasok.push(new Foglalas(f)));
     }
 }
