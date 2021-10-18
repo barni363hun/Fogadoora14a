@@ -16,7 +16,11 @@ export default class Foglalas {
     IdoponthozTartozoNev(keresettIdopont:string):(string|null){
         return keresettIdopont==this.#lefoglaltIdopont?(this.teljesNev):null
     }
-  
+    NevheztartozoIdopont(nev: string):string|null{
+        if (nev== this.teljesNev) 
+            return this.#lefoglaltIdopont        
+        return null
+    }
     public get teljesNev(): string {
         return this.#vezeteknev + " " + this.#keresztNev;
     }
