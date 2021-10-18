@@ -29,6 +29,12 @@ export default class Content {
         res.write("</br>")
         res.write(megoldas.foglalasokszama.toString()+" foglalás adatait tartalmazza a fájl.");
 
+        //4. feladat:
+
+        const bekertIdoPont:string= "17:40"; //TODO: Felhasználótól bekérés
+        res.write(megoldas.IdopontKiirasaFajlba())
+
+        // <---- Fejezd be a kódolást
 
         // body és html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
