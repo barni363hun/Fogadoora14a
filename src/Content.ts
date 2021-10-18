@@ -23,9 +23,6 @@ export default class Content {
         res.write((env.title).toString());
         res.write(readFileSync("src/html_components/start2.html").toString());
         // feladat megoldása
-        // 1. feladat + inicializálás
-        const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
-
 
         // Weboldal inicializálása + head rész:
         const megoldas:Megoldas = new Megoldas("src/fogado.txt")
