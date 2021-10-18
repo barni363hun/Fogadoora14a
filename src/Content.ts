@@ -14,6 +14,14 @@ export default class Content {
         // Weboldal inicializálása + head rész:
         const megoldas:Megoldas = new Megoldas("src/fogado.txt")
 
+
+
+
+        //4. feladat:
+
+        const bekertIdoPont:string= "17:40"; //TODO: Felhasználótól bekérés
+        res.write(megoldas.IdopontKiirasaFajlba())
+
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
