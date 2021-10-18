@@ -19,7 +19,7 @@ export default class Megoldas {
             if (temp != null)
                 p.push(60 * 1000 * (60 * parseInt(temp[0] + temp[1]) + (parseInt(temp[3] + temp[4]))));
             return p;
-        }, Array());
+        }, Array()).sort();
     }
 
     IdopontKiirasaFajlba(idopont: string): any {
@@ -52,10 +52,11 @@ export default class Megoldas {
         });
         return osszesen;
     }
-    public szabadIdopontok(): string {
+
+    public szabadIdopontok(nev: string): string {
 
         var lefoglaltIdopontok: number[] = [];
-        const nev = "Barna Eszter";
+
 
         lefoglaltIdopontok = this.lefoglaltIdopontokKeresese(nev);
 
@@ -72,6 +73,9 @@ export default class Megoldas {
             return p;
         }, Array())
             .join("<br>");
+    }
+    public tavozasIdopont(nev: string): string {
+        return this.miliszekundumSzovegge(this.lefoglaltIdopontokKeresese(nev).slice(-1)[0] + 1000 * 60 * 10)
     }
 
 
