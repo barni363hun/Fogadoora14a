@@ -1,57 +1,77 @@
-import { readFileSync, writeFileSync } from "fs";
+import { accessSync, readFileSync, writeFileSync } from "fs";
 import Foglalas from "./foglalas";
 
 export default class Megoldas {
     foglalasok: Foglalas[] = [];
-    lefoglaltIdopontok:(string|null)[]=[];
+
     constructor(fajlNev: string) {
         readFileSync(fajlNev)
-        .toString()
-        .split("\r\n")
-        .forEach(f => this.foglalasok.push(new Foglalas(f)));
+            .toString()
+            .split("\r\n")
+            .forEach(f => this.foglalasok.push(new Foglalas(f)));
     }
-    IdopontKiirasaFajlba(idopont:string): any {
-        try {
-            const fajlNev=`fajlok/${idopont.replace(":","")}.txt`;
+    private miliszekundumSzovegge(ms: number) {
+        return `${~~(ms / (60 * 60 * 1000))}:${((ms % (60 * 60 * 1000)) / 60 / 1000).toString().padEnd(2, "0")}`
+    }
 
-            var nevek:string[]=this.foglalasok.sort().reduce((elozo, jelenlegi)=>{
-                const nev:(string|null)=jelenlegi.IdoponthozTartozoNev(idopont)
-                if(nev!=null)
+    IdopontKiirasaFajlba(idopont: string): any {
+        try {
+            const fajlNev = `fajlok/${idopont.replace(":", "")}.txt`;
+            var nevek: string[] = this.foglalasok.sort().reduce((elozo, jelenlegi) => {
+                const nev: (string | null) = jelenlegi.IdoponthozTartozoNev(idopont)
+                if (nev != null)
                     elozo.push(nev);
                 return elozo;
-            }, Array());            
-           writeFileSync(fajlNev,nevek.sort().join("\r\n"));
+            }, Array());
+            writeFileSync(fajlNev, nevek.sort().join("\r\n"));
 
-           return readFileSync(fajlNev).toString().split("\r\n").reduce((elozo, jelenlegi)=>{elozo+=jelenlegi+"<br>"; return elozo},"");
-            
+            return readFileSync(fajlNev).toString().split("\r\n").reduce((elozo, jelenlegi) => { elozo += jelenlegi + "<br>"; return elozo }, "");
+
         } catch (error) {
-            return "A fájlbaírás sikertelen volt";
+            return "A fájlbaírás sikertelen volt<br>";
         }
     }
-    public get foglalasokszama():number
-    {
+    public get foglalasokszama(): number {
         return this.foglalasok.length;
     }
 
-    public tanarFoglalasainakSzama(tanarNev:string) :number
-    {
-        var osszesen:number = 0;
+    public tanarFoglalasainakSzama(tanarNev: string): number {
+        var osszesen: number = 0;
         this.foglalasok.forEach(item => {
             if (tanarNev == item.teljesNev) {
-                osszesen++;   
+                osszesen++;
             }
         });
         return osszesen;
     }
-     public szabadIdopontok():string{
-        this.foglalasok.forEach(f=>this.lefoglaltIdopontok.push(f.NevheztartozoIdopont(f.teljesNev)))
-        this.lefoglaltIdopontok= this.lefoglaltIdopontok.reduce((p,c)=>{
-           if(c!=null)
-                p.push(c)
-           return p
-        },Array())
+    public szabadIdopontok(): string {
 
+        var lefoglaltIdopontok: number[] = [];
+        const nev = "Barna Eszter";
 
-        return "";
-     }
+        lefoglaltIdopontok = this.lefoglaltIdopontokKeresese(nev);
+
+        var LehetsegesIdopontok: number[] = []
+        for (let i = 16; i < 18; i++) {
+            for (let j = 0; j <= 50; j += 10) {
+                LehetsegesIdopontok.push(60 * 1000 * (60 * i + j))
+            }
+        }
+
+        var szabadIdok: number[] = LehetsegesIdopontok.filter(f => !lefoglaltIdopontok.includes(f)).sort()
+        return szabadIdok.reduce((p, c) => {
+            p.push(this.miliszekundumSzovegge(c))
+            return p;
+        }, Array())
+            .join("<br>");
+    }
+
+    private lefoglaltIdopontokKeresese(nev: string) {
+        return this.foglalasok.reduce((p, c) => {
+            const temp = c.NevheztartozoIdopont(nev);
+            if (temp != null)
+                p.push(60 * 1000 * (60 * parseInt(temp[0] + temp[1]) + (parseInt(temp[3] + temp[4]))));
+            return p;
+        }, Array());
+    }
 }
