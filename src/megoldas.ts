@@ -9,4 +9,10 @@ export default class Megoldas {
             .split("\r\n")
             .forEach(f => this.foglalasok.push(new Foglalas(f)));
     }
+
+    public get foglalasokszama():number
+    {
+        return this.foglalasok.length;
+    }
+
 }
