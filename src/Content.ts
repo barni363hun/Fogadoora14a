@@ -46,12 +46,21 @@ export default class Content {
         res.write(megoldas.tanarFoglalasainakSzama(tanarNev).toString());
       
         //4. feladat:
+        res.write("<br>4.feladat: <br>")
         const bekertIdoPont:string= params.get("idoPontinput") as string
         res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="'+bekertIdoPont+'" onChange="this.form.submit();"><br>');
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
 
 
         //5.feladat
+
+
+        //6.feladat:
+        res.write("<br>6.feladat: <br>")
+        res.write(megoldas.szabadIdopontok())
+
+
+
 
         // html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
