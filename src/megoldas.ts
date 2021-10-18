@@ -17,8 +17,7 @@ export default class Megoldas {
                 if(nev!=null)
                     elozo.push(nev);
                 return elozo;
-            }, Array());
-            
+            }, Array());            
            writeFileSync(fajlNev,nevek.sort().join("\r\n"));
            return readFileSync(fajlNev);
             
