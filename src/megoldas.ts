@@ -3,7 +3,7 @@ import Foglalas from "./foglalas";
 
 export default class Megoldas {
     foglalasok: Foglalas[] = [];
-    lefoglaltIdopontok:string[]=[];
+    lefoglaltIdopontok:(string|null)[]=[];
     constructor(fajlNev: string) {
         readFileSync(fajlNev)
         .toString()
@@ -44,8 +44,12 @@ export default class Megoldas {
         return osszesen;
     }
      public szabadIdopontok():string{
-        
-
+        this.foglalasok.forEach(f=>this.lefoglaltIdopontok.push(f.NevheztartozoIdopont(f.teljesNev)))
+        this.lefoglaltIdopontok= this.lefoglaltIdopontok.reduce((p,c)=>{
+           if(c!=null)
+                p.push(c)
+           return p
+        },Array())
 
 
         return "";
