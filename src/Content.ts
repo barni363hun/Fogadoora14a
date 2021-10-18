@@ -35,14 +35,10 @@ export default class Content {
 
         //4. feladat:
 
-        const bekertIdoPont:string= params.get("idoPontinput") //TODO: Felhasználótól bekérés
+        const bekertIdoPont:string= params.get("idoPontinput") 
+        console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
+        res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="17:40" onChange="this.form.submit();"><br>');
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
-        res.write(' <input id="idoPontinput" type="text" name="idoPontinput" value="Időpont">'
-        
-        
-        
-        
-        )
 
         // <---- Fejezd be a kódolást
 

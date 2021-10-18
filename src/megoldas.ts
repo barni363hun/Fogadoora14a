@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, writev } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import Foglalas from "./foglalas";
 
 export default class Megoldas {
@@ -18,8 +18,8 @@ export default class Megoldas {
                     elozo.push(nev);
                 return elozo;
             }, Array());            
-           writeFileSync(fajlNev,nevek.sort().join("\r\n"));
-           return readFileSync(fajlNev);
+           writeFileSync(fajlNev,nevek.sort().join("\n"));
+           return readFileSync(fajlNev).toString().replace("\n","<br>");
             
         } catch (error) {
             return "A fájlbaírás sikertelen volt";
