@@ -22,6 +22,10 @@ export default class Content {
         res.write(readFileSync("src/html_components/start2.html").toString());
         // feladat megoldása
         // 1. feladat + inicializálás
+        const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
+
+
+        // Weboldal inicializálása + head rész:
         const megoldas:Megoldas = new Megoldas("src/fogado.txt")
         
         //2. feladat
@@ -31,8 +35,14 @@ export default class Content {
 
         //4. feladat:
 
-        const bekertIdoPont:string= "17:40"; //TODO: Felhasználótól bekérés
+        const bekertIdoPont:string= params.get("idoPontinput") //TODO: Felhasználótól bekérés
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
+        res.write(' <input id="idoPontinput" type="text" name="idoPontinput" value="Időpont">'
+        
+        
+        
+        
+        )
 
         // <---- Fejezd be a kódolást
 
