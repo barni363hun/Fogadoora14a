@@ -11,18 +11,19 @@ export default class Megoldas {
     }
     IdopontKiirasaFajlba(idopont:string): any {
         try {
-            
-            var nevek:string=this.foglalasok.reduce((elozo, jelenlegi)=>{
+            const fajlNev=`${idopont.replace(":","")}.txt`;
+            var nevek:string[]=this.foglalasok.sort().reduce((elozo, jelenlegi)=>{
                 const nev:(string|null)=jelenlegi.IdoponthozTartozoNev(idopont)
                 if(nev!=null)
-                    elozo+=nev+"\r\n"
+                    elozo.push(nev);
                 return elozo;
-            }, "");
+            }, Array());
             
-           writeFileSync("",nevek)
+           writeFileSync(fajlNev,nevek.sort().join("\r\n"));
+           return readFileSync(fajlNev);
             
         } catch (error) {
-            return "A fájlbaírás sikertelen volt"
+            return "A fájlbaírás sikertelen volt";
         }
     }
 }
