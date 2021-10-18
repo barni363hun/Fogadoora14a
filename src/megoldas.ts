@@ -32,4 +32,15 @@ export default class Megoldas {
         return this.foglalasok.length;
     }
 
+    public tanarFoglalasainakSzama(tanarNev:string) :number
+    {
+        var osszesen:number = 0;
+        this.foglalasok.forEach(item => {
+            if (tanarNev == item.teljesNev) {
+                osszesen++;   
+            }
+        });
+        return osszesen;
+    }
+
 }

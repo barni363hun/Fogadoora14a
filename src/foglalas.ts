@@ -12,7 +12,12 @@ export default class Foglalas {
         this.#lefoglaltIdopont = adatok[2];
         this.#foglalasIdeje = new Date(Date.parse(adatok[3])+60*60*1000 );
     }
+  
     IdoponthozTartozoNev(keresettIdopont:string):(string|null){
         return keresettIdopont==this.#lefoglaltIdopont?(this.#vezeteknev+" "+this.#keresztNev):null
+    }
+  
+    public get teljesNev(): string {
+        return this.#vezeteknev + " " + this.#keresztNev;
     }
 }
