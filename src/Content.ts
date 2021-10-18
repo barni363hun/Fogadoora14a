@@ -24,7 +24,6 @@ export default class Content {
         res.write(readFileSync("src/html_components/start2.html").toString());
         // feladat megoldása
         // 1. feladat + inicializálás
-        const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
 
 
         // Weboldal inicializálása + head rész:
@@ -51,6 +50,9 @@ export default class Content {
         console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
         res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="'+bekertIdoPont+'" onChange="this.form.submit();"><br>');
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
+
+
+        //5.feladat
 
         // html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
