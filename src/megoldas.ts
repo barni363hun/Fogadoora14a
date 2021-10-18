@@ -55,10 +55,7 @@ export default class Megoldas {
 
     public szabadIdopontok(nev: string): string {
 
-        var lefoglaltIdopontok: number[] = [];
-
-
-        lefoglaltIdopontok = this.lefoglaltIdopontokKeresese(nev);
+        var lefoglaltIdopontok: number[] = this.lefoglaltIdopontokKeresese(nev);
 
         var LehetsegesIdopontok: number[] = []
         for (let i = 16; i < 18; i++) {
@@ -71,8 +68,7 @@ export default class Megoldas {
         return szabadIdok.reduce((p, c) => {
             p.push(this.miliszekundumSzovegge(c))
             return p;
-        }, Array())
-            .join("<br>");
+        }, Array()).join("<br>");
     }
     public tavozasIdopont(nev: string): string {
         return this.miliszekundumSzovegge(this.lefoglaltIdopontokKeresese(nev).slice(-1)[0] + 1000 * 60 * 10)
