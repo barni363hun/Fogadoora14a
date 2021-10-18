@@ -32,7 +32,7 @@ export default class Content {
         //4. feladat:
 
         const bekertIdoPont:string= "17:40"; //TODO: Felhasználótól bekérés
-        res.write(megoldas.IdopontKiirasaFajlba())
+        res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
 
         // <---- Fejezd be a kódolást
 
