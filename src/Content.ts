@@ -41,13 +41,6 @@ export default class Content {
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
 
 
-        //4. feladat:
-
-        const bekertIdoPont:string= params.get("idoPontinput") 
-        console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
-        res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="17:40" onChange="this.form.submit();"><br>');
-        res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
-
         // <---- Fejezd be a kódolást
         // body és html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
