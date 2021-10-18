@@ -2,6 +2,7 @@
 import http from "http"; //  https://nodejs.org/docs/latest-v14.x/api/http.html
 import url from "url"; //  https://nodejs.org/docs/latest-v14.x/api/url.html
 import Megoldas from "./megoldas";
+import { readFileSync } from "fs";
 
 export default class Content {
     public static content(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -11,29 +12,37 @@ export default class Content {
             fs.createReadStream("favicon.ico").pipe(res);
             return;
         }
+                // környezeti változók definiálása
+                const env = {
+                    title:"Fogadóóra"
+                }
+                //html head, meta tagek, body megnyitása
+                res.write(readFileSync("src/html_components/start.html").toString());
+                res.write((env.title).toString());
+                res.write(readFileSync("src/html_components/start2.html").toString());
+                // feladat megoldása
+                // 1. feladat + inicializálás
+                const megoldas:Megoldas = new Megoldas("src/fogado.txt")
+                
+                //2. feladat
+                res.write("2. feladat:")
+                res.write("</br>")
+                res.write(megoldas.foglalasokszama.toString()+" foglalás adatait tartalmazza a fájl.");
         const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
-
-
-        // Weboldal inicializálása + head rész:
-        const megoldas:Megoldas = new Megoldas("src/fogado.txt")
 
 
 
 
         //4. feladat:
 
-        const bekertIdoPont:string= params.get("idoPontinput") //TODO: Felhasználótól bekérés
+        const bekertIdoPont:string= params.get("idoPontinput") 
+        console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
+        res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="17:40" onChange="this.form.submit();"><br>');
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
-        res.write(' <input id="idoPontinput" type="text" name="idoPontinput" value="Időpont">'
-        
-        
-        
-        
-        )
 
         // <---- Fejezd be a kódolást
-
-        res.write("</pre></form></body></html>");
+        // body és html tagek bezárása 
+        res.write(readFileSync("src/html_components/start2.html").toString());
         res.end();
     }
 }
