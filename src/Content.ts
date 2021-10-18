@@ -47,7 +47,6 @@ export default class Content {
       
         //4. feladat:
         const bekertIdoPont:string= params.get("idoPontinput") as string
-        console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
         res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="'+bekertIdoPont+'" onChange="this.form.submit();"><br>');
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
 
