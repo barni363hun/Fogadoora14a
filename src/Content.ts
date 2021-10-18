@@ -12,11 +12,13 @@ export default class Content {
             fs.createReadStream("favicon.ico").pipe(res);
             return;
         }
+        // kérés paramétereinek lekérdezése
+        const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
         // környezeti változók definiálása
         const env = {
             title:"Fogadóóra"
         }
-        //html head, meta tagek, body megnyitása
+        //html meta tagek, más tagek megnyitása
         res.write(readFileSync("src/html_components/start.html").toString());
         res.write((env.title).toString());
         res.write(readFileSync("src/html_components/start2.html").toString());
@@ -29,8 +31,18 @@ export default class Content {
         res.write("</br>")
         res.write(megoldas.foglalasokszama.toString()+" foglalás adatait tartalmazza a fájl.");
 
+        //3. feladat
+        res.write("</br>")
+        res.write("</br>")
+        res.write("3. feladat:")
+        res.write("</br>")
+        res.write("Adjon meg egy nevet: ")
+        let tanarNev:string = params.get("tanarNev") as string;
+        res.write(`<input type='text' name='tanarNev' onChange='this.form.submit();' >`);
+        res.write("</br>")
+        res.write(megoldas.tanarFoglalasainakSzama(tanarNev).toString());
 
-        // body és html tagek bezárása 
+        // html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
         res.end();
     }
