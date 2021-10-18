@@ -25,7 +25,6 @@ export default class Megoldas {
             return "A fájlbaírás sikertelen volt";
         }
     }
-
     public get foglalasokszama():number
     {
         return this.foglalasok.length;
