@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import Foglalas from "./foglalas";
 
 export default class Megoldas {
@@ -9,7 +9,13 @@ export default class Megoldas {
         .split("\r\n")
         .forEach(f => this.foglalasok.push(new Foglalas(f)));
     }
-    IdopontKiirasaFajlba(): any {
-        throw new Error("Method not implemented.");
+    IdopontKiirasaFajlba(idoPont:string): any {
+        try {
+            var nevek:string="";
+            writeFileSync(`${idoPont.replace(":","")}.txt`,nevek)
+            
+        } catch (error) {
+            return "A fájlbaírás sikertelen volt"
+        }
     }
 }
