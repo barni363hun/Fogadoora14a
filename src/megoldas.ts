@@ -13,6 +13,14 @@ export default class Megoldas {
     private miliszekundumSzovegge(ms: number) {
         return `${~~(ms / (60 * 60 * 1000))}:${((ms % (60 * 60 * 1000)) / 60 / 1000).toString().padEnd(2, "0")}`
     }
+    private lefoglaltIdopontokKeresese(nev: string) {
+        return this.foglalasok.reduce((p, c) => {
+            const temp = c.NevheztartozoIdopont(nev);
+            if (temp != null)
+                p.push(60 * 1000 * (60 * parseInt(temp[0] + temp[1]) + (parseInt(temp[3] + temp[4]))));
+            return p;
+        }, Array());
+    }
 
     IdopontKiirasaFajlba(idopont: string): any {
         try {
@@ -66,12 +74,5 @@ export default class Megoldas {
             .join("<br>");
     }
 
-    private lefoglaltIdopontokKeresese(nev: string) {
-        return this.foglalasok.reduce((p, c) => {
-            const temp = c.NevheztartozoIdopont(nev);
-            if (temp != null)
-                p.push(60 * 1000 * (60 * parseInt(temp[0] + temp[1]) + (parseInt(temp[3] + temp[4]))));
-            return p;
-        }, Array());
-    }
+
 }
