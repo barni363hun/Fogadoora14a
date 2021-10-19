@@ -14,6 +14,7 @@ test("konstruktor és jellemzők tesztelése fájlból", async () => {
 });
 test("idopontKiirasaFajlba() tesztelése", async () => {
     expect(megoldas1.IdopontKiirasaFajlba("16:30")).toBe("Barna Eszter<br>Csorba Ede<br>Magos Magdolna<br>Neumann Nikolett<br>");
+    expect(megoldas1.IdopontKiirasaFajlba("adasdasd")).toBe("A fájlbaírás sikertelen volt<br>")
     expect(readFileSync("fajlok/1630.txt").toString()).toBe("Barna Eszter\r\nCsorba Ede\r\nMagos Magdolna\r\nNeumann Nikolett");
 });
 test("szabadIdopontok() tesztelése", async () => {
