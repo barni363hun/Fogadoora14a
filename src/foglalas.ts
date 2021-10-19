@@ -10,7 +10,7 @@ export default class Foglalas {
         this.#vezeteknev = adatok[0];
         this.#keresztNev = adatok[1];
         this.#lefoglaltIdopont = adatok[2];
-        this.#foglalasIdeje = new Date(Date.parse(adatok[3])+60*60*1000 );
+        this.#foglalasIdeje = new Date(Date.parse(adatok[3]));
     }
   
     IdoponthozTartozoNev(keresettIdopont:string):(string|null){
