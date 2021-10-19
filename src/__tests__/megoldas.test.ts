@@ -24,3 +24,8 @@ test("tanarFoglalasainakSzama() tesztelése", async () => {
     expect(megoldas1.tanarFoglalasainakSzama("Csorba Ede")).toBe(3);
     expect(megoldas1.tanarFoglalasainakSzama("Magos Magdolna")).toBe(1);
 })
+test("tanarFoglalasainakSzama() tesztelése", async () => {
+    expect(megoldas1.tavozasIdopont("Csorba Ede")).toBe("17:40");
+    expect(megoldas1.tavozasIdopont("Magos Magdolna")).toBe("16:40");
+})
+
