@@ -18,4 +18,9 @@ test("idopontKiirasaFajlba() tesztelése", async () => {
 });
 test("szabadIdopontok() tesztelése", async () => {
     expect(megoldas1.szabadIdopontok("Csorba Ede")).toBe("16:00<br>16:10<br>16:20<br>16:50<br>17:00<br>17:10<br>17:20<br>17:40<br>17:50");
+    expect(megoldas1.szabadIdopontok("Magos Magdolna")).toBe("16:00<br>16:10<br>16:20<br>16:40<br>16:50<br>17:00<br>17:10<br>17:20<br>17:30<br>17:40<br>17:50");
+})
+test("tanarFoglalasainakSzama() tesztelése", async () => {
+    expect(megoldas1.tanarFoglalasainakSzama("Csorba Ede")).toBe(3);
+    expect(megoldas1.tanarFoglalasainakSzama("Magos Magdolna")).toBe(1);
 })
