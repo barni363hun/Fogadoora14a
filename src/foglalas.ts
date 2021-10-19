@@ -13,9 +13,15 @@ export default class Foglalas {
         this.#foglalasStringben = adatok[3];
         this.#foglalasIdeje = new Date(Date.parse(adatok[3]));
     }
+
+    IdoponthozTartozoNev(keresettIdopont: string): (string | null) {
+        return keresettIdopont == this.#lefoglaltIdopont ? (this.teljesNev) : null
+    }
   
-    IdoponthozTartozoNev(keresettIdopont:string):(string|null){
-        return keresettIdopont==this.#lefoglaltIdopont?(this.#vezeteknev+" "+this.#keresztNev):null
+    NevheztartozoIdopont(nev: string): (string | null) {
+        if (nev == this.teljesNev)
+            return this.#lefoglaltIdopont
+        return null
     }
   
     public get teljesNev(): string {
@@ -25,9 +31,11 @@ export default class Foglalas {
     public get foglalasDate():Date{
         return this.#foglalasIdeje;
     }
+  
     public get idopont():string{
         return this.#lefoglaltIdopont;
     }
+  
     public get foglalasString():string{
         return this.#foglalasStringben;
     }
