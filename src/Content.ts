@@ -16,7 +16,7 @@ export default class Content {
         const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
         // környezeti változók definiálása
         const env = {
-            title:"Fogadóóra"
+            title: "Fogadóóra"
         }
         //html meta tagek, más tagek megnyitása
         res.write(readFileSync("src/html_components/start.html").toString());
@@ -24,16 +24,15 @@ export default class Content {
         res.write(readFileSync("src/html_components/start2.html").toString());
         // feladat megoldása
         // 1. feladat + inicializálás
-        const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
 
 
         // Weboldal inicializálása + head rész:
-        const megoldas:Megoldas = new Megoldas("src/fogado.txt")
-        
+        const megoldas: Megoldas = new Megoldas("src/fogado.txt")
+
         //2. feladat
         res.write("2. feladat:")
         res.write("</br>")
-        res.write(megoldas.foglalasokszama.toString()+" foglalás adatait tartalmazza a fájl.");
+        res.write(megoldas.foglalasokszama.toString() + " foglalás adatait tartalmazza a fájl.");
 
         //3. feladat
         res.write("</br>")
@@ -41,16 +40,27 @@ export default class Content {
         res.write("3. feladat:")
         res.write("</br>")
         res.write("Adjon meg egy nevet: ")
-        let tanarNev:string = params.get("tanarNev") as string;
+        let tanarNev: string = params.get("tanarNev") as string;
         res.write(`<input type='text' name='tanarNev' onChange='this.form.submit();' >`);
         res.write("</br>")
         res.write(megoldas.tanarFoglalasainakSzama(tanarNev).toString());
-      
+
         //4. feladat:
-        const bekertIdoPont:string= params.get("idoPontinput") as string
-        console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
-        res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="'+bekertIdoPont+'" onChange="this.form.submit();"><br>');
+        res.write("<br>4.feladat: <br>")
+        const bekertIdoPont: string = params.get("idoPontinput") as string
+        res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="' + bekertIdoPont + '" onChange="this.form.submit();"><br>');
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
+
+
+        //5.feladat
+
+
+        //6.feladat:
+        res.write("<br>6.feladat: <br>")
+        res.write(megoldas.szabadIdopontok("Barna Eszter") + "<br>")
+        res.write(`Barna Eszter legkorábban távozhat: ${megoldas.tavozasIdopont("Barna Eszter")}`)
+
+
 
         // html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
