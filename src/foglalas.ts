@@ -20,4 +20,8 @@ export default class Foglalas {
     public get teljesNev(): string {
         return this.#vezeteknev + " " + this.#keresztNev;
     }
+
+    public get foglalasDate():Date{
+        return this.#foglalasIdeje;
+    }
 }
