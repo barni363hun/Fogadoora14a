@@ -43,4 +43,18 @@ export default class Megoldas {
         return osszesen;
     }
 
+    public legkorabbanLefoglaltFoglalas(){
+        var dates:Date[] = this.foglalasok.map(i => i.foglalasDate);
+        var minDate:Date = dates[0];
+        dates.map(date =>
+            {
+                if (minDate > date) {
+                    minDate = date;
+                }
+            });
+        return this.foglalasok.map(i=> {
+            if(i.foglalasDate == minDate) return i
+        });
+    }
+
 }
