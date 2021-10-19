@@ -1,8 +1,9 @@
-import fs from "fs"; //  https://nodejs.org/docs/latest-v14.x/api/fs.html
+﻿import fs from "fs"; //  https://nodejs.org/docs/latest-v14.x/api/fs.html
 import http from "http"; //  https://nodejs.org/docs/latest-v14.x/api/http.html
 import url from "url"; //  https://nodejs.org/docs/latest-v14.x/api/url.html
 import Megoldas from "./megoldas";
 import { readFileSync } from "fs";
+import Foglalas from "./foglalas";
 
 export default class Content {
     public static content(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -53,6 +54,19 @@ export default class Content {
         res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="'+bekertIdoPont+'" onChange="this.form.submit();"><br>');
         res.write("</br>")
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
+
+        //5. feladat:
+        res.write("</br>")
+        res.write("</br>")
+        res.write("5. feladat:")
+        res.write("</br>")
+        const legkorabban:(Foglalas | undefined) = megoldas.legkorabbanLefoglaltFoglalas();
+        res.write("Tanár neve: " + legkorabban?.teljesNev)
+        res.write("</br>")
+        res.write("Foglalt időpont: " + legkorabban?.idopont);
+        res.write("</br>")
+        res.write("Foglalás ideje: " + legkorabban?.foglalasString)
+        
 
         // html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());

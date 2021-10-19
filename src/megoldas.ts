@@ -54,7 +54,8 @@ export default class Megoldas {
             });
         return this.foglalasok.map(i=> {
             if(i.foglalasDate == minDate) return i
-        });
+        })[0];
+        
     }
 
 }
