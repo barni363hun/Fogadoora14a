@@ -3,13 +3,14 @@ export default class Foglalas {
     #keresztNev: string;
     #lefoglaltIdopont: string;
     #foglalasIdeje: Date;
-
+    #foglalasStringben :string;
     
     constructor(sor: string) {
         let adatok: string[] = sor.split(" ");
         this.#vezeteknev = adatok[0];
         this.#keresztNev = adatok[1];
         this.#lefoglaltIdopont = adatok[2];
+        this.#foglalasStringben = adatok[3];
         this.#foglalasIdeje = new Date(Date.parse(adatok[3]));
     }
   
@@ -23,5 +24,11 @@ export default class Foglalas {
 
     public get foglalasDate():Date{
         return this.#foglalasIdeje;
+    }
+    public get idopont():string{
+        return this.#lefoglaltIdopont;
+    }
+    public get foglalasString():string{
+        return this.#foglalasStringben;
     }
 }
