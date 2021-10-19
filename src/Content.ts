@@ -1,4 +1,4 @@
-﻿import fs from "fs"; //  https://nodejs.org/docs/latest-v14.x/api/fs.html
+import fs from "fs"; //  https://nodejs.org/docs/latest-v14.x/api/fs.html
 import http from "http"; //  https://nodejs.org/docs/latest-v14.x/api/http.html
 import url from "url"; //  https://nodejs.org/docs/latest-v14.x/api/url.html
 import Megoldas from "./megoldas";
@@ -44,9 +44,14 @@ export default class Content {
         res.write(megoldas.tanarFoglalasainakSzama(tanarNev).toString());
       
         //4. feladat:
+        res.write("</br>")
+        res.write("</br>")
+        res.write("4. feladat:")
+        res.write("</br>")
         const bekertIdoPont:string= params.get("idoPontinput") as string
         console.log(bekertIdoPont)//TODO: Felhasználótól bekérés
         res.write('<input id="idoPontinput" type="text" name="idoPontinput" value="'+bekertIdoPont+'" onChange="this.form.submit();"><br>');
+        res.write("</br>")
         res.write(megoldas.IdopontKiirasaFajlba(bekertIdoPont))
 
         // html tagek bezárása 
