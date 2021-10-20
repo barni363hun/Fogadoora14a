@@ -6,12 +6,12 @@ test("konstruktor és jellemzők tesztelése fájlból", async () => {
     expect(foglalas).toBeInstanceOf(Foglalas);
 });
 test("IdoponthozTartozoNev() tesztelése", async () => {
-    expect(foglalas.IdoponthozTartozoNev("16:50")).toBe("Fodor Zsuzsanna");
-    expect(foglalas.IdoponthozTartozoNev("asdasd")).toBe(null);
+    expect(foglalas.idoponthozTartozoNev("16:50")).toBe("Fodor Zsuzsanna");
+    expect(foglalas.idoponthozTartozoNev("asdasd")).toBe(null);
 });
 test("NevheztartozoIdopont() tesztelése", async () => {
-    expect(foglalas.NevheztartozoIdopont("Fodor Zsuzsanna")).toBe("16:50");
-    expect(foglalas.NevheztartozoIdopont("asdasd")).toBe(null);
+    expect(foglalas.nevheztartozoIdopont("Fodor Zsuzsanna")).toBe("16:50");
+    expect(foglalas.nevheztartozoIdopont("asdasd")).toBe(null);
 })
 test("teljesNev() tesztelése", async () => {
     expect(foglalas.teljesNev).toBe("Fodor Zsuzsanna");
