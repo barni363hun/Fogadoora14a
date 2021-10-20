@@ -29,6 +29,12 @@ test("tanarFoglalasainakSzama() tesztelése", async () => {
     expect(megoldas1.tavozasIdopont("Csorba Ede")).toBe("17:40");
     expect(megoldas1.tavozasIdopont("Magos Magdolna")).toBe("16:40");
 })
-test("tanarFoglalasainakSzama() tesztelése", async () => {
-    expect(megoldas1.legkorabbanLefoglaltFoglalas()).toBe("17:40");
+test("legkorabbanLefoglaltFoglalas() tesztelése", async () => {
+    const legkorabbifoglalas = megoldas1.legkorabbanLefoglaltFoglalas()
+    expect(legkorabbifoglalas).toBeInstanceOf(Foglalas);
+    expect(legkorabbifoglalas?.teljesNev).toBe("Csorba Ede")
+    expect(legkorabbifoglalas?.idopont).toBe("16:30")
+    expect(legkorabbifoglalas?.foglalasString).toBe("2017.10.28-18:48")
+
+
 })
