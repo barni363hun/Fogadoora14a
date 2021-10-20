@@ -10,11 +10,11 @@ export default class Megoldas {
             .split("\r\n")
             .forEach(f => this.foglalasok.push(new Foglalas(f)));
     }
-  
+
     private miliszekundumSzovegge(ms: number) {
         return `${~~(ms / (60 * 60 * 1000))}:${((ms % (60 * 60 * 1000)) / 60 / 1000).toString().padEnd(2, "0")}`
     }
-  
+
     private lefoglaltIdopontokKeresese(nev: string) {
         return this.foglalasok.reduce((p, c) => {
             const temp = c.NevheztartozoIdopont(nev);
@@ -43,7 +43,7 @@ export default class Megoldas {
             return "A fájlbaírás sikertelen volt<br>";
         }
     }
-  
+
     public get foglalasokszama(): number {
         return this.foglalasok.length;
     }
@@ -58,18 +58,15 @@ export default class Megoldas {
         return osszesen;
     }
 
-    public legkorabbanLefoglaltFoglalas(){
-        var dates:Date[] = this.foglalasok.map(i => i.foglalasDate);
-        var minDate:Date = dates[0];
-        dates.map(date =>
-            {
-                if (minDate > date) {
-                    minDate = date;
-                }
-            });
-        return this.foglalasok.map(i=> {
-            if(i.foglalasDate == minDate) return i
-        })[0];
+    public legkorabbanLefoglaltFoglalas(): Foglalas | undefined {
+        var datumok: string[] = this.foglalasok.map(i => i.foglalasString);
+        var legkisebbDatum: string = datumok[0];
+        datumok.forEach(date => {
+            if (legkisebbDatum > date) {
+                legkisebbDatum = date;
+            }
+        });
+        return this.foglalasok.find(f => f.foglalasString == legkisebbDatum);
     }
 
     public szabadIdopontok(nev: string): string {
