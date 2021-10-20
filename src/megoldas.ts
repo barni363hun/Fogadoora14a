@@ -26,6 +26,8 @@ export default class Megoldas {
 
     IdopontKiirasaFajlba(idopont: string): any {
         try {
+            if (idopont.length != 5 || !idopont.includes(":"))
+                throw "Nem jó a string"
             const fajlNev = `fajlok/${idopont.replace(":", "")}.txt`;
             var nevek: string[] = this.foglalasok.sort().reduce((elozo, jelenlegi) => {
                 const nev: (string | null) = jelenlegi.IdoponthozTartozoNev(idopont)
