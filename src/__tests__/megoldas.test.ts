@@ -10,7 +10,6 @@ test("konstruktor és jellemzők tesztelése fájlból", async () => {
     expect(megoldas1.foglalasok.length).toBe(20);
     expect(megoldas1.foglalasokszama).toBe(megoldas1.foglalasok.length)
     expect(() => new Megoldas("nemLetezoFajl.txt")).toThrow()
-
 });
 test("idopontKiirasaFajlba() tesztelése", async () => {
     expect(megoldas1.IdopontKiirasaFajlba("16:30")).toBe("Barna Eszter<br>Csorba Ede<br>Magos Magdolna<br>Neumann Nikolett<br>");
@@ -35,6 +34,4 @@ test("legkorabbanLefoglaltFoglalas() tesztelése", async () => {
     expect(legkorabbifoglalas?.teljesNev).toBe("Csorba Ede")
     expect(legkorabbifoglalas?.idopont).toBe("16:30")
     expect(legkorabbifoglalas?.foglalasString).toBe("2017.10.28-18:48")
-
-
 })
