@@ -8,12 +8,12 @@ test("konstruktor és jellemzők tesztelése fájlból", async () => {
     expect(megoldas1.foglalasok).toBeInstanceOf(Array)
     expect(megoldas1.foglalasok[2]).toBeInstanceOf(Foglalas)
     expect(megoldas1.foglalasok.length).toBe(20);
-    expect(megoldas1.foglalasokszama).toBe(megoldas1.foglalasok.length)
+    expect(megoldas1.foglalasokSzama).toBe(megoldas1.foglalasok.length)
     expect(() => new Megoldas("nemLetezoFajl.txt")).toThrow()
 });
 test("idopontKiirasaFajlba() tesztelése", async () => {
-    expect(megoldas1.IdopontKiirasaFajlba("16:30")).toBe("Barna Eszter<br>Csorba Ede<br>Magos Magdolna<br>Neumann Nikolett<br>");
-    expect(megoldas1.IdopontKiirasaFajlba("adasdasd")).toBe("A fájlbaírás sikertelen volt<br>")
+    expect(megoldas1.idopontKiirasaFajlba("16:30")).toBe("Barna Eszter<br>Csorba Ede<br>Magos Magdolna<br>Neumann Nikolett<br>");
+    expect(megoldas1.idopontKiirasaFajlba("adasdasd")).toBe("A fájlbaírás sikertelen volt<br>")
     expect(readFileSync("fajlok/1630.txt").toString()).toBe("Barna Eszter\r\nCsorba Ede\r\nMagos Magdolna\r\nNeumann Nikolett");
 });
 test("szabadIdopontok() tesztelése", async () => {
