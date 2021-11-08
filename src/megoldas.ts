@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdir, existsSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import Foglalas from "./foglalas";
 
 export default class Megoldas {
@@ -21,7 +21,7 @@ export default class Megoldas {
                 const idopontstring = c.nevheztartozoIdopont(nev);
                 if (idopontstring != null) p.push(60 * 1000 * (60 * parseInt(idopontstring[0] + idopontstring[1]) + parseInt(idopontstring[3] + idopontstring[4])));
                 return p;
-            }, Array())
+            }, [] as number[])
             .sort();
     }
 
@@ -34,7 +34,7 @@ export default class Megoldas {
                 const nev: string | null = jelenlegi.idoponthozTartozoNev(idopont);
                 if (nev != null) elozo.push(nev);
                 return elozo;
-            }, Array());
+            }, [] as string[]);
             writeFileSync(fajlNev, nevek.sort().join("\r\n"));
 
             return readFileSync(fajlNev).toString().split("\r\n").join("<br>") + "<br>";
@@ -81,7 +81,7 @@ export default class Megoldas {
             .reduce((p, c) => {
                 p.push(this.miliszekundumSzovegge(c));
                 return p;
-            }, Array())
+            }, [] as string[])
             .join("<br>");
     }
 
