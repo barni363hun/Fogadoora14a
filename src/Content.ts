@@ -74,8 +74,11 @@ export default class Content {
         res.write("<br>");
         res.write(megoldas.szabadIdopontok("Barna Eszter") + "<br>");
         res.write(`Barna Eszter legkorábban távozhat: ${megoldas.tavozasIdopont("Barna Eszter")}`);
+        res.write("<br><br><br><br><br><br><br>");
 
-
+        // fájlok kiírása 
+        res.write('forrás fájl:<br>');
+        res.write(readFileSync('src/fogado.txt'));
 
         // html tagek bezárása 
         res.write(readFileSync("src/html_components/start2.html").toString());
