@@ -40,8 +40,9 @@ export default class Content {
         res.write("3. feladat:");
         res.write("<br>");
         res.write("Adjon meg egy nevet: ");
-        const tanarNev: string = params.get("tanarNev") as string;
-        res.write('<input type="text" name="tanarNev" onChange="this.form.submit();" >');
+        let tanarNev: string = params.get("tanarNev") as string;
+        if (!tanarNev) tanarNev = "Magos Magdolna";
+        res.write(`<input type="text" name="tanarNev" value="${tanarNev}" onChange="this.form.submit();" >`);
         res.write("<br>");
         res.write(megoldas.tanarFoglalasainakSzama(tanarNev).toString());
 
@@ -50,8 +51,9 @@ export default class Content {
         res.write("<br>");
         res.write("4. feladat:");
         res.write("<br>");
-        const bekertIdoPont: string = params.get("idoPontinput") as string;
-        res.write('<input id="idoPontinput" type="text" name="idoPontinput" onChange="this.form.submit();"><br>');
+        let bekertIdoPont: string = params.get("idoPontinput") as string;
+        if (!bekertIdoPont) bekertIdoPont = "17:30";
+        res.write(`<input id="idoPontinput" type="text" name="idoPontinput" value="${bekertIdoPont}" onChange="this.form.submit();"><br>`);
         res.write("<br>");
         res.write(megoldas.idopontKiirasaFajlba(bekertIdoPont));
 
@@ -76,11 +78,11 @@ export default class Content {
         res.write(`Barna Eszter legkorábban távozhat: ${megoldas.tavozasIdopont("Barna Eszter")}`);
         res.write("<br><br><br><br><br><br><br>");
 
-        // forrás fájl kiírása 
-        res.write('forrás fájl:<br>');
-        res.write(readFileSync('src/fogado.txt'));
+        // forrás fájl kiírása
+        res.write("forrás fájl:<br>");
+        res.write(readFileSync("src/fogado.txt"));
 
-        // html tagek bezárása 
+        // html tagek bezárása
         res.write(readFileSync("src/html_components/start2.html").toString());
         res.end();
     }
