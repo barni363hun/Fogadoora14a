@@ -17,11 +17,11 @@ export default class Content {
         const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
         // környezeti változók definiálása
         const env = {
-            title: "Fogadóóra"
+            title: "Fogadóóra",
         };
         //html meta tagek, más tagek megnyitása
         res.write(readFileSync("src/html_components/start.html").toString());
-        res.write((env.title).toString());
+        res.write(env.title.toString());
         res.write(readFileSync("src/html_components/start2.html").toString());
         // feladat megoldása
 
@@ -40,7 +40,7 @@ export default class Content {
         res.write("3. feladat:");
         res.write("<br>");
         res.write("Adjon meg egy nevet: ");
-        let tanarNev: string = params.get("tanarNev") as string;
+        const tanarNev: string = params.get("tanarNev") as string;
         res.write('<input type="text" name="tanarNev" onChange="this.form.submit();" >');
         res.write("<br>");
         res.write(megoldas.tanarFoglalasainakSzama(tanarNev).toString());
@@ -60,7 +60,7 @@ export default class Content {
         res.write("<br>");
         res.write("5. feladat:");
         res.write("<br>");
-        const legkorabban: (Foglalas | undefined) = megoldas.legkorabbanLefoglaltFoglalas();
+        const legkorabban: Foglalas | undefined = megoldas.legkorabbanLefoglaltFoglalas();
         res.write("Tanár neve: " + legkorabban?.teljesNev);
         res.write("<br>");
         res.write("Foglalt időpont: " + legkorabban?.idopont);
@@ -75,9 +75,7 @@ export default class Content {
         res.write(megoldas.szabadIdopontok("Barna Eszter") + "<br>");
         res.write(`Barna Eszter legkorábban távozhat: ${megoldas.tavozasIdopont("Barna Eszter")}`);
 
-
-
-        // html tagek bezárása 
+        // html tagek bezárása
         res.write(readFileSync("src/html_components/start2.html").toString());
         res.end();
     }
